@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>🔍 Is Prism Working? - Quick Visual Test</title>
+<link href="js_example_style.css" rel="stylesheet" type="text/css" />
+<link href="prism.min.css" rel="stylesheet" type="text/css" />
+<style>
+body { 
+    font-family: Arial; 
+    padding: 20px; 
+    background: #f5f5f5;
+}
+.test-box {
+    background: white;
+    border: 3px solid #333;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+.pass { border-color: #28a745; background: #d4edda; }
+.fail { border-color: #dc3545; background: #f8d7da; }
+h1 { color: #333; }
+h2 { color: #0066cc; margin-top: 0; }
+.instruction {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin: 20px 0;
+    font-size: 16px;
+}
+.result {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+.example {
+    margin: 15px 0;
+    padding: 10px;
+    background: #e9ecef;
+    border-radius: 4px;
+}
+</style>
+</head>
+<body>
+
+<h1>🔍 Visual Test: Is Prism.js Working?</h1>
+
+<div class="instruction">
+    <strong>📋 HOW TO USE THIS TEST:</strong><br><br>
+    Look at the textarea below. If you see <strong>COLORFUL CODE</strong> instead of plain black text, 
+    it means <strong>Prism.js is WORKING! ✅</strong><br><br>
+    If you only see plain black text, something is wrong ❌
+</div>
+
+<!-- REFERENCE: What it SHOULD look like -->
+<div class="test-box pass">
+    <h2>✅ THIS is what WORKING looks like:</h2>
+    <div class="example">
+        <pre><code class="language-javascript">let src = cv.imread('canvasInput');  // Green string, gray comment
+let dst = new cv.Mat();              // Blue keyword
+cv.cvtColor(src, dst, cv.COLOR_RGB2GRAY);  // Pink function name
+src.delete();</code></pre>
+    </div>
+    <p><strong>Notice the COLORS:</strong></p>
+    <ul>
+        <li><span style="color: #07a; font-weight: bold;">Blue</span> - Keywords (let, const, new)</li>
+        <li><span style="color: #690; font-weight: bold;">Green</span> - Strings ('canvasInput')</li>
+        <li><span style="color: #dd4a68; font-weight: bold;">Pink/Red</span> - Functions (imread, cvtColor)</li>
+        <li><span style="color: #708090; font-weight: bold;">Gray</span> - Comments (// ...)</li>
+    </ul>
+</div>
+
+<!-- THE ACTUAL TEST -->
+<div class="test-box">
+    <h2>🧪 NOW CHECK THIS TEXTAREA:</h2>
+    <p><strong>Does the code below have COLORS? Or is it plain black?</strong></p>
+    
+    <textarea class="code" rows="12" cols="80" spellcheck="false">let src = cv.imread('canvasInput');
+let dst = new cv.Mat();
+
+// This is a comment - should be GRAY
+cv.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0);
+
+function processImage() {
+    cv.Laplacian(src, dst, cv.CV_8U, 1, 1, 0);
+    cv.imshow('canvasOutput', dst);
+}
+
+src.delete();
+dst.delete();</textarea>
+
+    <div style="margin-top: 20px; padding: 20px; background: #fff; border: 2px solid #333;">
+        <h3>❓ ANSWER THESE QUESTIONS:</h3>
+        
+        <div class="result">
+            <label style="font-size: 20px;">
+                <input type="checkbox" style="width: 20px; height: 20px; margin-right: 10px;">
+                <strong>Q1:</strong> Do I see the word "let" in <span style="color: #07a;">BLUE</span> color?
+            </label>
+        </div>
+        
+        <div class="result">
+            <label style="font-size: 20px;">
+                <input type="checkbox" style="width: 20px; height: 20px; margin-right: 10px;">
+                <strong>Q2:</strong> Do I see 'canvasInput' in <span style="color: #690;">GREEN</span> color?
+            </label>
+        </div>
+        
+        <div class="result">
+            <label style="font-size: 20px;">
+                <input type="checkbox" style="width: 20px; height: 20px; margin-right: 10px;">
+                <strong>Q3:</strong> Do I see "// This is a comment" in <span style="color: #708090;">GRAY</span> color?
+            </label>
+        </div>
+        
+        <div class="result">
+            <label style="font-size: 20px;">
+                <input type="checkbox" style="width: 20px; height: 20px; margin-right: 10px;">
+                <strong>Q4:</strong> Do I see "imread" and "cvtColor" in <span style="color: #dd4a68;">PINK/RED</span> color?
+            </label>
+        </div>
+        
+        <hr style="margin: 20px 0;">
+        
+        <div style="padding: 20px; background: #d4edda; border-radius: 5px; margin-top: 20px;">
+            <h3 style="margin-top: 0;">✅ IF YOU CHECKED ALL 4 BOXES:</h3>
+            <p style="font-size: 18px;"><strong>🎉 SUCCESS! Prism.js is WORKING!</strong></p>
+            <p>Now test typing in the textarea and take screenshots!</p>
+        </div>
+        
+        <div style="padding: 20px; background: #f8d7da; border-radius: 5px; margin-top: 20px;">
+            <h3 style="margin-top: 0;">❌ IF YOU CHECKED 0-3 BOXES:</h3>
+            <p style="font-size: 18px;"><strong>⚠️ Something is wrong!</strong></p>
+            <p>Tell me what you see: "All text is plain black" or "Some colors missing"</p>
+        </div>
+    </div>
+</div>
+
+<div class="test-box">
+    <h2>✏️ NEXT: Test Typing</h2>
+    <p><strong>Click in the textarea above and type:</strong> <code>let x = 'test';</code></p>
+    <div class="result">
+        <label style="font-size: 18px;">
+            <input type="checkbox" style="width: 20px; height: 20px; margin-right: 10px;">
+            I can see a black cursor when I click
+        </label>
+    </div>
+    <div class="result">
+        <label style="font-size: 18px;">
+            <input type="checkbox" style="width: 20px; height: 20px; margin-right: 10px;">
+            The colors update as I type
+        </label>
+    </div>
+</div>
+
+<script src="prism.min.js" type="text/javascript"></script>
+<script src="prism-textarea.min.js" type="text/javascript"></script>
+<script src="prism-textarea.js" type="text/javascript"></script>
+
+<script>
+// Show debug info in console
+console.log("=== PRISM DEBUG INFO ===");
+console.log("Prism loaded:", typeof Prism !== 'undefined');
+console.log("Textareas found:", document.querySelectorAll('textarea.code').length);
+setTimeout(function() {
+    var highlighted = document.querySelectorAll('textarea[data-highlighted="true"]');
+    console.log("Textareas highlighted:", highlighted.length);
+    if (highlighted.length === 0) {
+        console.error("❌ NO TEXTAREAS WERE HIGHLIGHTED!");
+        alert("⚠️ WARNING: Highlighting did not initialize!\n\nPress F12 and check the Console for errors.");
+    } else {
+        console.log("✅ Highlighting initialized successfully");
+    }
+}, 1000);
+</script>
+
+</body>
+</html>

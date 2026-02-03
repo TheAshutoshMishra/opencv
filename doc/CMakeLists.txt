@@ -230,7 +230,14 @@ if(DOXYGEN_FOUND)
   # make sure the build directory exists
   file(MAKE_DIRECTORY "${opencv_tutorial_html_dir}")
 
+<<<<<<< HEAD
   # minify prism.js files from 3rdparty for syntax highlighting
+=======
+  # Minify and copy Prism.js files from 3rdparty for syntax highlighting
+  set(prismjs_3rdparty_dir "${OpenCV_SOURCE_DIR}/3rdparty/prismjs")
+  set(protected_files "") # List of files handled by dedicated minification rules
+
+>>>>>>> 58723a23cb (doc: Fix Copilot review issues for Prism.js integration)
   if(PYTHON_DEFAULT_EXECUTABLE)
     # Minify prism.js
     set(prism_src "${prismjs_3rdparty_dir}/prism.js")
@@ -279,11 +286,48 @@ if(DOXYGEN_FOUND)
       COMMENT "Copying prism.css"
     )
     list(APPEND js_tutorials_assets_deps "${opencv_tutorial_html_dir}/prism.min.css")
+<<<<<<< HEAD
+=======
+    
+    # Add to protected files list
+    list(APPEND protected_files "prism.min.js" "prism-textarea.min.js" "prism.min.css")
+  else()
+    # Fallback when Python is not available: copy unminified files
+    message(WARNING "PYTHON_DEFAULT_EXECUTABLE not found. Copying unminified Prism.js files for documentation syntax highlighting.")
+    
+    add_custom_command(
+      OUTPUT "${opencv_tutorial_html_dir}/prism.min.js"
+      COMMAND ${CMAKE_COMMAND} -E copy_if_different "${prismjs_3rdparty_dir}/prism.js" "${opencv_tutorial_html_dir}/prism.min.js"
+      DEPENDS "${prismjs_3rdparty_dir}/prism.js"
+      COMMENT "Copying unminified prism.js (Python not available)"
+    )
+    list(APPEND js_tutorials_assets_deps "${opencv_tutorial_html_dir}/prism.min.js")
+    
+    add_custom_command(
+      OUTPUT "${opencv_tutorial_html_dir}/prism-textarea.min.js"
+      COMMAND ${CMAKE_COMMAND} -E copy_if_different "${prismjs_3rdparty_dir}/prism-textarea.js" "${opencv_tutorial_html_dir}/prism-textarea.min.js"
+      DEPENDS "${prismjs_3rdparty_dir}/prism-textarea.js"
+      COMMENT "Copying unminified prism-textarea.js (Python not available)"
+    )
+    list(APPEND js_tutorials_assets_deps "${opencv_tutorial_html_dir}/prism-textarea.min.js")
+    
+    add_custom_command(
+      OUTPUT "${opencv_tutorial_html_dir}/prism.min.css"
+      COMMAND ${CMAKE_COMMAND} -E copy_if_different "${prismjs_3rdparty_dir}/prism.css" "${opencv_tutorial_html_dir}/prism.min.css"
+      DEPENDS "${prismjs_3rdparty_dir}/prism.css"
+      COMMENT "Copying prism.css (Python not available)"
+    )
+    list(APPEND js_tutorials_assets_deps "${opencv_tutorial_html_dir}/prism.min.css")
+    
+    # Add to protected files list
+    list(APPEND protected_files "prism.min.js" "prism-textarea.min.js" "prism.min.css")
+>>>>>>> 58723a23cb (doc: Fix Copilot review issues for Prism.js integration)
   endif()
 
   # gather and copy specific files for js tutorials
   file(GLOB_RECURSE js_assets "${js_tutorials_assets_dir}/*")
   ocv_list_filterout(js_assets "\\\\.eslintrc.json")
+<<<<<<< HEAD
   # Exclude prism files that are handled separately by minification rules
   # This prevents conflicts with add_custom_command outputs
   ocv_list_filterout(js_assets "prism\\\\.js$")
@@ -292,6 +336,15 @@ if(DOXYGEN_FOUND)
   ocv_list_filterout(js_assets "prism\\\\.min\\\\.js$")
   ocv_list_filterout(js_assets "prism\\\\.min\\\\.css$")
   ocv_list_filterout(js_assets "prism-textarea\\\\.min\\\\.js$")
+=======
+  
+  # Exclude protected files using ocv_list_filterout for consistency
+  foreach(pf ${protected_files})
+    string(REPLACE "." "\\\\." pf_escaped "${pf}")
+    ocv_list_filterout(js_assets "${pf_escaped}$")
+  endforeach()
+  
+>>>>>>> 58723a23cb (doc: Fix Copilot review issues for Prism.js integration)
   list(APPEND js_assets "${OpenCV_SOURCE_DIR}/samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/Data/box.mp4")
 
   if(BUILD_opencv_js)

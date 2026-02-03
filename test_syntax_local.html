@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prism.js Local Test</title>
+    <link rel="stylesheet" href="3rdparty/prismjs/prism.css"/>
+</head>
+<body>
+    <h1>Prism.js Syntax Highlighting Test</h1>
+    
+    <h2>Test 1: Read-only code block</h2>
+    <pre><code class="language-javascript">// This is a comment
+function hello() {
+    console.log("Hello, World!");
+    return 42;
+}</code></pre>
+    
+    <h2>Test 2: Editable textarea</h2>
+    <textarea class="code language-javascript" rows="6">// You can edit this!
+let canvas = document.getElementById('myCanvas');
+let ctx = canvas.getContext('2d');
+ctx.fillStyle = 'red';
+ctx.fillRect(10, 10, 100, 100);</textarea>
+    
+    <script src="3rdparty/prismjs/prism.js"></script>
+    <script src="3rdparty/prismjs/prism-textarea.js"></script>
+</body>
+</html>

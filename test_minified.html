@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prism.js MINIFIED Test</title>
+    <link rel="stylesheet" href="3rdparty/prismjs/prism.css"/>
+</head>
+<body>
+    <h1>Prism.js MINIFIED Version Test</h1>
+    <p>Testing with minified files (prism.min.js and prism-textarea.min.js)</p>
+    
+    <h2>Test 1: Read-only code block</h2>
+    <pre><code class="language-javascript">// OpenCV JavaScript example
+let mat = cv.imread('canvasInput');
+cv.cvtColor(mat, mat, cv.COLOR_RGBA2GRAY);
+cv.imshow('canvasOutput', mat);
+mat.delete();</code></pre>
+    
+    <h2>Test 2: Editable textarea (like in tutorials)</h2>
+    <textarea class="code language-javascript" rows="8">// Try editing this code!
+function onVideoStarted() {
+    video.width = video.videoWidth;
+    video.height = video.videoHeight;
+    let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
+    let dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
+    requestAnimationFrame(processVideo);
+}</textarea>
+    
+    <h2>Test 3: Another editable block</h2>
+    <textarea class="code language-javascript" rows="5">// Check cursor visibility
+let canvas = document.getElementById('canvas');
+let ctx = canvas.getContext('2d');
+ctx.fillStyle = '#FF0000';
+ctx.fillRect(0, 0, 100, 100);</textarea>
+    
+    <script src="3rdparty/prismjs/prism.min.js"></script>
+    <script src="3rdparty/prismjs/prism-textarea.min.js"></script>
+    
+    <script>
+        // Log to console for verification
+        console.log('Prism loaded:', typeof Prism !== 'undefined');
+        console.log('Prism Textarea loaded:', typeof window.PrismTextarea !== 'undefined');
+    </script>
+</body>
+</html>

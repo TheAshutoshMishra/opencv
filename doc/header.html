@@ -32,6 +32,45 @@ $treeview
 $search
 $mathjax
 $darkmode
+<!-- Prism.js syntax highlighting for JavaScript tutorials (loaded conditionally) -->
+<script type="text/javascript">
+(function() {
+  function loadPrism() {
+    // Only load on pages that need syntax highlighting (JavaScript tutorial pages)
+    var needsPrism = document.querySelector('code.language-javascript, code[class*="language-js"], textarea.code');
+    if (!needsPrism) {
+      return;
+    }
+    var head = document.getElementsByTagName('head')[0];
+    if (!head) {
+      return;
+    }
+    // Load Prism CSS
+    var prismCss = document.createElement('link');
+    prismCss.rel = 'stylesheet';
+    prismCss.type = 'text/css';
+    prismCss.href = '$relpath^prism.min.css';
+    head.appendChild(prismCss);
+    // Load main Prism JS
+    var prismJs = document.createElement('script');
+    prismJs.type = 'text/javascript';
+    prismJs.src = '$relpath^prism.min.js';
+    head.appendChild(prismJs);
+    // Load Prism extension for textareas
+    prismJs.onload = function() {
+      var prismTextareaJs = document.createElement('script');
+      prismTextareaJs.type = 'text/javascript';
+      prismTextareaJs.src = '$relpath^prism-textarea.min.js';
+      head.appendChild(prismTextareaJs);
+    };
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadPrism);
+  } else {
+    loadPrism();
+  }
+})();
+</script>
 <link href="$relpath^$stylesheet" rel="stylesheet" type="text/css" />
 $extrastylesheet
 </head>

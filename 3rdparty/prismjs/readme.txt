@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Prism.js - Lightweight, extensible syntax highlighter
 =====================================================
 
@@ -48,3 +49,65 @@ For more information, see:
 - Prism.js documentation: https://prismjs.com/docs/
 - MIT License: https://opensource.org/licenses/MIT
 - Apache 2.0 License: https://www.apache.org/licenses/LICENSE-2.0
+=======
+# Prism.js - Syntax Highlighting for OpenCV.js Tutorials
+
+## Version
+Prism.js v1.30.0
+
+## License
+MIT License (see LICENSE file)
+
+## Contents
+
+This directory contains unminified source files for Prism.js syntax highlighting:
+
+- **prism.js** - Core Prism library + JavaScript language support (combined)
+- **prism.css** - Default syntax highlighting theme
+- **prism-textarea.js** - Custom extension for textarea highlighting (OpenCV specific)
+- **LICENSE** - MIT License
+
+## Build Process
+
+These files are minified during the OpenCV documentation build process:
+1. Source files are copied from 3rdparty/prismjs/ to build directory
+2. `doc/minify_js.py` minifies the JavaScript files
+3. Minified files are placed in `build/doc/doxygen/html/`
+
+## Updating Prism.js
+
+To update to a newer version:
+
+1. Download unminified source from https://github.com/PrismJS/prism
+   ```bash
+   # Core
+   wget https://raw.githubusercontent.com/PrismJS/prism/master/components/prism-core.js
+   
+   # JavaScript language
+   wget https://raw.githubusercontent.com/PrismJS/prism/master/components/prism-javascript.js
+   
+   # Theme
+   wget https://raw.githubusercontent.com/PrismJS/prism/master/themes/prism.css
+   ```
+
+2. Combine core and language files:
+   ```bash
+   cat prism-core.js prism-javascript.js > prism.js
+   ```
+
+3. Test the build:
+   ```bash
+   cmake -DBUILD_DOCS=ON ../opencv
+   cmake --build . --target doxygen
+   ```
+
+## Why These Files?
+
+- **prism.js**: Minimal build with only JavaScript language support for tutorial pages
+- **prism-textarea.js**: Custom solution to enable syntax highlighting in editable textareas
+- **prism.css**: Default theme matching OpenCV documentation style
+
+## License Compatibility
+
+Prism.js (MIT License) is compatible with OpenCV's Apache 2.0 License.
+>>>>>>> 58723a23cb (doc: Fix Copilot review issues for Prism.js integration)

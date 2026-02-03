@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="doc/js_tutorials/js_assets/prism.min.css">
+</head>
+<body>
+    <h1>Prism.js Test</h1>
+    <pre><code class="language-javascript">
+let x = 5;
+function test() {
+    console.log("Hello");
+}
+    </code></pre>
+    
+    <script src="doc/js_tutorials/js_assets/prism.min.js"></script>
+    <script>
+        console.log("Prism loaded:", typeof Prism !== 'undefined');
+        console.log("Prism version:", Prism ? "OK" : "FAILED");
+    </script>
+</body>
+</html>
